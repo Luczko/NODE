@@ -5,7 +5,8 @@ const addTaskHandler = argv => {
     id: 1,
     quote: argv.cytat,
     author: argv.autor,
-    group: argv.grupa
+    group: argv.grupa,
+    count: 0
   };
   console.log(argv);
   fs.readFile("quotes.json", "utf-8", (error, data) => {

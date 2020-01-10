@@ -8,7 +8,17 @@ const getListHandler = () => {
       const fileParse = JSON.parse(data);
       const randomQuote =
         fileParse[Math.floor(Math.random() * fileParse.length)];
-      console.log("Cytat:", randomQuote.quote, "Autor:", randomQuote.author);
+      randomQuote.count += 1;
+      fs.writeFile("quotes.json", JSON.stringify(fileParse), () => {
+        console.log(
+          "Cytat:",
+          randomQuote.quote,
+          "Autor:",
+          randomQuote.author,
+          "Wylosowano:",
+          `${randomQuote.count} razy`
+        );
+      });
     }
   });
 };

@@ -6,23 +6,27 @@ const getListHandler = argv => {
       console.log(error.message);
     } else {
       const fileParse = JSON.parse(data);
-      const fileFiltr = fileParse.filter(e => {
+      let fileFiltr = fileParse.filter(e => {
         if (e.group === argv.grupa) {
           return e;
         }
       });
-      fileFiltr.forEach(e => {
-        console.log(
-          "id:",
-          e.id,
-          "Cytat:",
-          e.quote,
-          "Autor:",
-          e.author,
-          "Rodzaj:",
-          e.group
-        );
-      });
+      if (fileFiltr[0] === undefined) {
+        console.log("Nie ma takiej grupy");
+      } else {
+        fileFiltr.forEach(e => {
+          console.log(
+            "id:",
+            e.id,
+            "Cytat:",
+            e.quote,
+            "Autor:",
+            e.author,
+            "Rodzaj:",
+            e.group
+          );
+        });
+      }
     }
   });
 };
